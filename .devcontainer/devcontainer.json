@@ -33,7 +33,8 @@
 				"Tyriar.sort-lines",
 				"Prisma.prisma",
 				"bradlc.vscode-tailwindcss",
-				"dsznajder.es7-react-js-snippets"
+				"dsznajder.es7-react-js-snippets",
+				"vunguyentuan.vscode-postcss"
 			]
 		}
 	}, 

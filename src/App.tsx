@@ -1,11 +1,11 @@
 import { Wrapper } from './App.styles'
-import { Booking } from './components/Booking'
+import { Property } from './components/Property'
 import './normalize.css'
 
 function App() {
   return (
     <Wrapper>
-      <Booking />
+      <Property />
     </Wrapper>
   )
 }

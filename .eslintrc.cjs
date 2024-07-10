@@ -18,8 +18,10 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-  ecmaVersion: "latest",
-  sourceType: "module",
-  project: ["./tsconfig.json"],
-  tsconfigRootDir: __dirname,
-};
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.app.json", "./tsconfig.node.json"],
+    tsconfigRootDir: __dirname,
+  },
+}

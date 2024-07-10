@@ -1,0 +1,3 @@
+export enum ERROR_TYPE {
+  BOOKING_ERROR= "BOOKING_ERROR"
+} 
