@@ -12,7 +12,7 @@ export const Review = (props: ReviewProps) => {
 
   return (
     <Flex gap="xs" align={"center"}>
-      <Badge color="blue" size="xl" radius="sm">
+      <Badge color="teal.6" size="xl" radius="sm">
         {point}
       </Badge>
       <Text fw={700}>{description}</Text>

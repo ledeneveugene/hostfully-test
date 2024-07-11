@@ -19,7 +19,7 @@ import {
   MobileBlock,
   MobileBlockWrapper,
 } from "./BookingsList.styles";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 
 export const BookingsList = () => {
   const bookingId = useRef<string | undefined>();
@@ -131,7 +131,7 @@ export const BookingsList = () => {
     const { id, start, end, userId, comment } = booking;
 
     return (
-      <>
+      <Fragment key={id}>
         <Divider />
         <MobileBlockWrapper key={id}>
           <MobileBlock>
@@ -166,7 +166,7 @@ export const BookingsList = () => {
             </ActionIcon>
           </ActionButtons>
         </MobileBlockWrapper>
-      </>
+      </Fragment>
     );
   });
 
