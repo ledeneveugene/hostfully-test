@@ -29,8 +29,8 @@ const testProperty: Property = {
   // bookings: [],
   dailyPrice: {
     currency: "USD",
-    oldPrice: "1562.00",
-    price: "1350.00",
+    oldPrice: 1562,
+    price: 1350,
   },
   bookings: [
     // {
@@ -38,8 +38,6 @@ const testProperty: Property = {
     //   start: 1722081600000,
     //   end: 1722160800000,
     //   userId: "15",
-    //   gapAfter: 0,
-    //   gapBefore: 0,
     //   comment: "some comment",
     // },
   ],

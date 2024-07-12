@@ -53,8 +53,8 @@ export const Property = () => {
               td="line-through"
               c="red.5"
               fw="bold"
-            >{`${currency} ${oldPrice}`}</Text>
-            <Text w="bold" c="green.7">{`${currency} ${price}`}</Text>
+            >{`${currency} ${oldPrice.toFixed(2)}`}</Text>
+            <Text w="bold" c="green.7">{`${currency} ${price.toFixed(2)}`}</Text>
           </PriceLine>
           <Button onClick={open}>Book now</Button>
         </CallToAction>

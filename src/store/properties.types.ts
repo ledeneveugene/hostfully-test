@@ -12,8 +12,8 @@ export interface Property {
 }
 
 interface DailyPrice {
-  price: string;
-  oldPrice: string;
+  price: number;
+  oldPrice: number;
   currency: string;
 }
 
@@ -21,8 +21,6 @@ export interface Booking {
   id: string;
   start: number;
   end: number;
-  gapBefore?: number;
-  gapAfter?: number;
   userId: string;
   comment: string;
 }
