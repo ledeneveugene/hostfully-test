@@ -12,6 +12,7 @@ import {
 } from "../../store/properties.types";
 import dayjs from "dayjs";
 import { addCheckInOutTimeToStartEndDates } from "../../utils/dateManipulations";
+import { bookDateSelector } from "./helpers/bookDateSelector";
 
 type DatesRange = [Date | null, Date | null];
 
@@ -23,16 +24,8 @@ interface FormValues {
 const defaultDates: DatesRange = [null, null];
 
 export const BookDate = () => {
-  const { upsertBooking, editPropertyModal, property } =
-    useGlobalStoreWithZustandards([
-      "upsertBooking",
-      "editPropertyModal",
-      "property",
-    ]);
-
-  const { timeZone } = property;
-
-  const { booking, close } = editPropertyModal;
+  const { upsertBooking, booking, close, timeZone } =
+    useGlobalStoreWithZustandards(bookDateSelector);
 
   const isUpdating = !!booking;
   const submitButtonName = isUpdating ? "Update booking" : "Book property";

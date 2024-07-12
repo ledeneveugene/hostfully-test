@@ -1,8 +1,7 @@
-
 import { Booking } from "../store/properties.types";
 import { isInRange } from "./isInRange";
 
-export const checkBookingConflicts = <B extends Pick<Booking, 'start' |'end'>>(
+export const checkBookingConflicts = <B extends Pick<Booking, "start" | "end">>(
   checkedBooking: B,
   bookings: Booking[]
 ) => {
@@ -10,7 +9,7 @@ export const checkBookingConflicts = <B extends Pick<Booking, 'start' |'end'>>(
   const { start, end } = checkedBooking;
 
   bookings.some((b) => {
-    if(isInRange(b.start, b.end, start) || isInRange(b.start, b.end, end) ) {
+    if (isInRange(b.start, b.end, start) || isInRange(b.start, b.end, end)) {
       conflicts.push(b);
       return true;
     }

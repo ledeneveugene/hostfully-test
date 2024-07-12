@@ -20,24 +20,17 @@ import {
   MobileBlockWrapper,
 } from "./BookingsList.styles";
 import { Fragment, useRef } from "react";
+import { bookingsListSelector } from "./helpers/bookingsListSelector";
 
 export const BookingsList = () => {
   const bookingId = useRef<string | undefined>();
 
-  const { property, users, editPropertyModal, deleteBooking } =
-    useGlobalStoreWithZustandards([
-      "property",
-      "users",
-      "editPropertyModal",
-      "deleteBooking",
-    ]);
+  const { bookings, timeZone, users, setBooking, deleteBooking } =
+    useGlobalStoreWithZustandards(bookingsListSelector);
 
   const [opened, { open, close }] = useDisclosure(false);
 
   const isDesktop = useMediaQuery("(min-width: 48em)");
-
-  const { bookings, timeZone } = property;
-  const { setBooking } = editPropertyModal;
 
   const onDelete = () => {
     if (bookingId.current) {

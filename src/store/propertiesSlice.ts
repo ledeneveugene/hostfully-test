@@ -32,15 +32,7 @@ const testProperty: Property = {
     oldPrice: 1562,
     price: 1350,
   },
-  bookings: [
-    // {
-    //   id: "1",
-    //   start: 1722081600000,
-    //   end: 1722160800000,
-    //   userId: "15",
-    //   comment: "some comment",
-    // },
-  ],
+  bookings: [],
   review: {
     point: 8,
     description: "Very good",

@@ -24,4 +24,4 @@ module.exports = {
     project: ["./tsconfig.json", "./tsconfig.app.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};

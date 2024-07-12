@@ -17,5 +17,5 @@ export const FormFields = styled.div`
 
 export const FormFieldsWrapper = styled.div`
   display: flex;
-  justify-content: flex-end
-`
+  justify-content: flex-end;
+`;

@@ -11,24 +11,24 @@ import {
 } from "./Property.styles";
 import { BookDate } from "./BookDate";
 import { BookingsList } from "./BookingsList";
+import { propertySelector } from "./helpers/propertySelector";
 
 export const Property = () => {
-  const { property, editPropertyModal } = useGlobalStoreWithZustandards([
-    "property",
-    "users",
-    "editPropertyModal",
-  ]);
-
   const {
     name,
     address,
-    rating: { value: ratingValue, fractions = DEFAULT_FRACTIONS },
     review,
     imageURL,
-    dailyPrice: { currency, oldPrice, price },
-  } = property;
+    rating,
+    dailyPrice,
+    booking,
+    close,
+    open,
+    opened,
+  } = useGlobalStoreWithZustandards(propertySelector);
 
-  const { booking, close, open, opened } = editPropertyModal;
+  const { currency, oldPrice, price } = dailyPrice;
+  const { value: ratingValue, fractions = DEFAULT_FRACTIONS } = rating;
 
   const modalTitle = booking ? "Edit booking" : "Create booking";
 
@@ -49,12 +49,12 @@ export const Property = () => {
         />
         <CallToAction>
           <PriceLine data-testid="property-prices">
-            <Text
-              td="line-through"
-              c="red.5"
-              fw="bold"
-            >{`${currency} ${oldPrice.toFixed(2)}`}</Text>
-            <Text w="bold" c="green.7">{`${currency} ${price.toFixed(2)}`}</Text>
+            <Text td="line-through" c="red.5" fw="bold">
+              {`${currency} ${oldPrice.toFixed(2)}`}
+            </Text>
+            <Text w="bold" c="green.7">
+              {`${currency} ${price.toFixed(2)}`}
+            </Text>
           </PriceLine>
           <Button onClick={open}>Book now</Button>
         </CallToAction>

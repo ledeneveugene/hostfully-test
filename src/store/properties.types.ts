@@ -11,7 +11,7 @@ export interface Property {
   dailyPrice: DailyPrice;
 }
 
-interface DailyPrice {
+export interface DailyPrice {
   price: number;
   oldPrice: number;
   currency: string;
@@ -30,9 +30,12 @@ export interface BookingError {
   message: string;
 }
 
-export type Users = Record<string, {
+export type Users = Record<
+  string,
+  {
     name: string;
-  }>;
+  }
+>;
 
 export interface PropertyReview {
   point: number;
@@ -48,7 +51,10 @@ export interface PropertyRating {
 export type InsertBooking = Omit<Booking, "id">;
 export type UpdateBooking = Booking;
 
-export type BookedDays = Record<number, Record<number, Record<number, boolean>>>;
+export type BookedDays = Record<
+  number,
+  Record<number, Record<number, boolean>>
+>;
 
 export interface EditPropertyModal {
   opened: boolean;
