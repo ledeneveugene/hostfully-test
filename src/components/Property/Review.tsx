@@ -11,7 +11,7 @@ export const Review = (props: ReviewProps) => {
   } = props;
 
   return (
-    <Flex gap="xs" align={"center"}>
+    <Flex gap="xs" align={"center"} data-testid="property-review-line">
       <Badge color="teal.6" size="xl" radius="sm">
         {point}
       </Badge>

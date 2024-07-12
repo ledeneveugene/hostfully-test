@@ -119,6 +119,7 @@ export const BookDate = () => {
             label="Booking range"
             placeholder="Please select a booking range"
             valueFormat={DATE_FORMAT}
+            data-testid="booking-date-picker"
             {...form.getInputProps("dates")}
           />
 
@@ -128,7 +129,7 @@ export const BookDate = () => {
             {...form.getInputProps("comment")}
           />
           {form.errors.submit && (
-            <Text c="red.5" size="sm">
+            <Text c="red.5" size="sm" data-testid="book-date-submit-error-text">
               {form.errors.submit}
             </Text>
           )}

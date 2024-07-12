@@ -11,7 +11,6 @@ import {
 } from "./properties.types";
 import { uuid } from "../utils/uuid";
 import { DATE_FORMAT, ERROR_TYPE } from "../constants";
-import dayjs from "dayjs";
 import {
   addCheckInOutTimeToStartEndDates,
   getDateIntervalString,
@@ -34,15 +33,15 @@ const testProperty: Property = {
     price: "1350.00",
   },
   bookings: [
-    {
-      id: "1",
-      start: 1722081600000,
-      end: 1722160800000,
-      userId: "15",
-      gapAfter: 0,
-      gapBefore: 0,
-      comment: "some comment",
-    },
+    // {
+    //   id: "1",
+    //   start: 1722081600000,
+    //   end: 1722160800000,
+    //   userId: "15",
+    //   gapAfter: 0,
+    //   gapBefore: 0,
+    //   comment: "some comment",
+    // },
   ],
   review: {
     point: 8,

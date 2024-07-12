@@ -37,14 +37,18 @@ export const Property = () => {
       <Wrapper>
         <Text size="xl">{name}</Text>
         <Text size="sm">{address}</Text>
-        <RatingLine>
+        <RatingLine data-testid="property-rating-line">
           <Rating value={ratingValue} fractions={fractions} readOnly />
           <Text fw={700}>{ratingValue}</Text>
         </RatingLine>
         <Review review={review} />
-        <Image radius="md" src={getImageURL(imageURL)} />
+        <Image
+          radius="md"
+          src={getImageURL(imageURL)}
+          data-testid="property-image"
+        />
         <CallToAction>
-          <PriceLine>
+          <PriceLine data-testid="property-prices">
             <Text
               td="line-through"
               c="red.5"
@@ -54,7 +58,12 @@ export const Property = () => {
           </PriceLine>
           <Button onClick={open}>Book now</Button>
         </CallToAction>
-        <Modal opened={opened} onClose={close} title={modalTitle}>
+        <Modal
+          opened={opened}
+          onClose={close}
+          title={modalTitle}
+          data-testid="book-date-modal"
+        >
           <BookDate />
         </Modal>
         <BookingsList />
