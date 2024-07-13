@@ -296,7 +296,7 @@ describe("Booking page", () => {
             "Sorry, there is a conflict with 07.03.24 14:00 - 07.05.24 12:00 booking. Please select other dates."
           );
 
-          // We book the interval 07.05.24 14:00 - 07.07.24 12:00 immediately after the existing one .
+          // We book the interval 07.01.24 14:00 - 07.03.24 12:00 immediately before the existing one .
           cy.contains(/booking range/i).click();
           cy.get(".mantine-DatePickerInput-levelsGroup").then(($calendar) => {
             cy.wrap($calendar).contains("button", /^1$/).click();
