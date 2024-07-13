@@ -17,8 +17,8 @@ I used Zustand as a storage. You can use Redux Google Chrome extension to see th
 ### Task description
 The task doesn't have details at all. Please have a look at the context below for understanding my implementation.
 
-There is a company that owns several real estate properties **in different time zones**. The company books these properties by receiving phone calls from clients or messages in a messenger A manager handles the booking. In order to book the property, the manager clicks on a property and **sees the page I created**.
 
+There is a company that owns several real estate properties **in different time zones**. The company books these properties by receiving phone calls from clients or messages in a messenger. A manager handles the booking. In order to book the property, the manager clicks on a property and **sees the page I've created**.
 Each property has a time zone. I save a timestamp in a store and display the date and time in the property’s time zone. You can change start and end booking time using `checkIn` and `checkOut` constants in `constants/property.ts` file.
 
 ### Other
