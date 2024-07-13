@@ -1,6 +1,9 @@
 import { Booking } from "../store/properties.types";
 import { isInRange } from "./isInRange";
 
+/**
+ * checks bookings overlapping between checkedBooking and bookings
+ */
 export const checkBookingConflicts = <B extends Pick<Booking, "start" | "end">>(
   checkedBooking: B,
   bookings: Booking[]

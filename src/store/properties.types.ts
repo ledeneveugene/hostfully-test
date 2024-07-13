@@ -64,3 +64,5 @@ export interface EditPropertyModal {
   open: () => void;
   close: () => void;
 }
+
+export type UpsertBooking = UpdateBooking | InsertBooking;

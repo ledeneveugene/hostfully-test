@@ -4,50 +4,18 @@ import {
   Booking,
   BookingError,
   EditPropertyModal,
-  InsertBooking,
   Property,
-  UpdateBooking,
+  UpsertBooking,
   Users,
 } from "./properties.types";
-import { uuid } from "../utils/uuid";
+import { uuid } from "../utils";
 import { DATE_FORMAT, ERROR_TYPE } from "../constants";
 import {
   addCheckInOutTimeToStartEndDates,
   getDateIntervalString,
-} from "../utils/dateManipulations";
-import { checkBookingConflicts } from "../utils/checkBookingConflicts";
-
-const testProperty: Property = {
-  id: "45",
-  name: "Ilunio Les Corts Spa",
-  address: "Cardenal Reig, 11, Les Corts, 08028 Barcelona, Spain",
-  rating: {
-    value: 4.5,
-    fractions: 2,
-  },
-  timeZone: "Europe/Berlin",
-  // bookings: [],
-  dailyPrice: {
-    currency: "USD",
-    oldPrice: 1562,
-    price: 1350,
-  },
-  bookings: [],
-  review: {
-    point: 8,
-    description: "Very good",
-    numberOfReviews: 5642,
-  },
-  imageURL: "/images/property_main.jpg",
-};
-
-const testUsers: Users = {
-  "15": {
-    name: "John Lee",
-  },
-};
-
-type UpsertBooking = UpdateBooking | InsertBooking;
+} from "../utils";
+import { checkBookingConflicts } from "../utils";
+import { testProperty, testUsers } from "./testData";
 
 export interface PropertySlice {
   property: Property;
@@ -70,12 +38,27 @@ export const propertySlice: ImmerStateCreator<PropertySlice> = (set, get) => ({
   upsertBooking: (booking) => {
     const { timeZone, bookings } = get().property;
 
+    // Skip the current booking if we change one
     const bookingsForChecking =
       "id" in booking && booking.id
         ? bookings.filter((b) => b.id !== booking.id)
         : bookings;
 
-    const checkResult = checkBookingConflicts(booking, bookingsForChecking);
+    const { start, end } = addCheckInOutTimeToStartEndDates({
+      start: booking.start,
+      end: booking.end,
+      timeZone,
+    });
+    const bookingWithCheckInOutTime = {
+      ...booking,
+      start,
+      end,
+    };
+
+    const checkResult = checkBookingConflicts(
+      bookingWithCheckInOutTime,
+      bookingsForChecking
+    );
 
     if (checkResult) {
       const conflictRangeText = getDateIntervalString(
@@ -83,6 +66,8 @@ export const propertySlice: ImmerStateCreator<PropertySlice> = (set, get) => ({
         timeZone,
         DATE_FORMAT + " HH:mm"
       );
+
+      // Display the booking we have overlap with
       return {
         type: ERROR_TYPE.BOOKING_ERROR,
         message: `Sorry, there is a conflict with ${conflictRangeText} booking. Please select other dates.`,
@@ -91,17 +76,10 @@ export const propertySlice: ImmerStateCreator<PropertySlice> = (set, get) => ({
 
     if (!("id" in booking)) {
       // Insert
-      const { start, end } = addCheckInOutTimeToStartEndDates({
-        start: booking.start,
-        end: booking.end,
-        timeZone,
-      });
       set((state) => {
         const newBooking = {
-          ...booking,
+          ...bookingWithCheckInOutTime,
           id: uuid(),
-          start,
-          end,
         };
 
         state.property.bookings.push(newBooking);
@@ -113,17 +91,9 @@ export const propertySlice: ImmerStateCreator<PropertySlice> = (set, get) => ({
         state.property.bookings = state.property.bookings.map((book) => {
           const { id } = book;
           if (id === booking.id) {
-            const { start, end } = addCheckInOutTimeToStartEndDates({
-              start: booking.start,
-              end: booking.end,
-              timeZone,
-            });
-
             const newBooking = {
               ...book,
-              ...booking,
-              start,
-              end,
+              ...bookingWithCheckInOutTime,
             };
 
             return newBooking;

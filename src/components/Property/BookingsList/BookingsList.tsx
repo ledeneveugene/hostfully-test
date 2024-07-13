@@ -8,9 +8,9 @@ import {
   Text,
 } from "@mantine/core";
 import { FaCalendarDays, FaPen, FaX } from "react-icons/fa6";
-import { DATE_FORMAT } from "../../constants";
-import { useGlobalStoreWithZustandards } from "../../store/globalStore";
-import { getDateIntervalString } from "../../utils/dateManipulations";
+import { DATE_FORMAT } from "../../../constants";
+import { useGlobalStoreWithZustandards } from "../../../store/globalStore";
+import { getDateIntervalString } from "../../../utils";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import {
   ActionButtons,
@@ -20,7 +20,7 @@ import {
   MobileBlockWrapper,
 } from "./BookingsList.styles";
 import { Fragment, useRef } from "react";
-import { bookingsListSelector } from "./helpers/bookingsListSelector";
+import { bookingsListSelector } from "../helpers/bookingsListSelector";
 
 export const BookingsList = () => {
   const bookingId = useRef<string | undefined>();
@@ -48,24 +48,6 @@ export const BookingsList = () => {
     bookingId.current = id;
     open();
   };
-
-  const alertModal = (
-    <Modal
-      opened={opened}
-      onClose={close}
-      title="Do you really want to delete the booking?"
-      data-testid="delete-booking-confirmation-modal"
-    >
-      <AlertButtons>
-        <Button w="7rem" variant="outline" onClick={onCancel}>
-          No
-        </Button>
-        <Button w="7rem" color="red" onClick={onDelete}>
-          Yes
-        </Button>
-      </AlertButtons>
-    </Modal>
-  );
 
   const rows = bookings.map((booking) => {
     const { id, start, end, userId, comment } = booking;
@@ -123,7 +105,7 @@ export const BookingsList = () => {
     </>
   );
 
-  const mobileBlock = bookings.map((booking) => {
+  const mobileBlock = bookings.map((booking, index) => {
     const { id, start, end, userId, comment } = booking;
 
     return (
@@ -161,7 +143,7 @@ export const BookingsList = () => {
               </FlexLine>
             )}
           </MobileBlock>
-          <ActionButtons>
+          <ActionButtons isLast={bookings.length - 1 === index}>
             <ActionIcon variant="outline" aria-label="Settings" color="blue.5">
               <FaPen onClick={() => setBooking(id)} data-testid="edit-icon" />
             </ActionIcon>
@@ -192,7 +174,21 @@ export const BookingsList = () => {
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
-      {alertModal}
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Do you really want to delete the booking?"
+        data-testid="delete-booking-confirmation-modal"
+      >
+        <AlertButtons>
+          <Button w="7rem" variant="outline" onClick={onCancel}>
+            No
+          </Button>
+          <Button w="7rem" color="red" onClick={onDelete}>
+            Yes
+          </Button>
+        </AlertButtons>
+      </Modal>
     </>
   );
 };

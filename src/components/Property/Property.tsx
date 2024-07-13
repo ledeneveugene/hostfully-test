@@ -1,7 +1,7 @@
 import { Button, Container, Image, Modal, Rating, Text } from "@mantine/core";
 import { getImageURL } from "../../utils";
 import { DEFAULT_FRACTIONS } from "../../constants";
-import { Review } from "./Review";
+import { Review } from "./Review/Review";
 import { useGlobalStoreWithZustandards } from "../../store/globalStore";
 import {
   CallToAction,
@@ -9,8 +9,8 @@ import {
   RatingLine,
   Wrapper,
 } from "./Property.styles";
-import { BookDate } from "./BookDate";
-import { BookingsList } from "./BookingsList";
+import { BookDate } from "./BookDate/BookDate";
+import { BookingsList } from "./BookingsList/BookingsList";
 import { propertySelector } from "./helpers/propertySelector";
 
 export const Property = () => {

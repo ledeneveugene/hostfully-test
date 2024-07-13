@@ -1,5 +1,5 @@
 import { Badge, Flex, Text } from "@mantine/core";
-import { PropertyReview } from "../../store/properties.types";
+import { PropertyReview } from "../../../store/properties.types";
 
 interface ReviewProps {
   review: PropertyReview;

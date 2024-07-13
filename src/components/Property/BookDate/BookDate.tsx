@@ -1,18 +1,17 @@
 import { Button, Text, Textarea } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm, UseFormReturnType } from "@mantine/form";
-import { DATE_FORMAT } from "../../constants";
+import { DATE_FORMAT } from "../../../constants";
 import { FormFields, FormFieldsWrapper } from "./BookDate.styles";
-import { useGlobalStoreWithZustandards } from "../../store/globalStore";
+import { useGlobalStoreWithZustandards } from "../../../store/globalStore";
 import {
   Booking,
   BookingError,
   InsertBooking,
   UpdateBooking,
-} from "../../store/properties.types";
+} from "../../../store/properties.types";
 import dayjs from "dayjs";
-import { addCheckInOutTimeToStartEndDates } from "../../utils/dateManipulations";
-import { bookDateSelector } from "./helpers/bookDateSelector";
+import { bookDateSelector } from "../helpers/bookDateSelector";
 
 type DatesRange = [Date | null, Date | null];
 
@@ -66,16 +65,10 @@ export const BookDate = () => {
   ) => {
     const { comment, dates } = values;
 
-    const { start, end } = addCheckInOutTimeToStartEndDates({
-      start: dayjs(dates[0]).valueOf(),
-      end: dayjs(dates[1]).valueOf(),
-      timeZone,
-    });
-
     const addBookingObj: InsertBooking = {
       comment,
-      start,
-      end,
+      start: dayjs(dates[0]).valueOf(),
+      end: dayjs(dates[1]).valueOf(),
       userId: "15",
     };
 

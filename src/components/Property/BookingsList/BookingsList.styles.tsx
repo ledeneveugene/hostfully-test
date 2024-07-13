@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const ActionButtons = styled.div`
+export const ActionButtons = styled.div<{ isLast?: boolean }>`
   display: flex;
   gap: 0.5rem;
   @media (max-width: 48em) {
     gap: 1rem;
     justify-content: flex-end;
     align-items: center;
+
+    margin-bottom: ${(props) => (props.isLast ? "0" : "1rem")};
   }
 `;
 
