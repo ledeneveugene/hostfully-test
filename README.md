@@ -1,5 +1,8 @@
 # Hostfilly React technical test
 
+### If you are wondering whether you should do this task
+![Desctop 1](./doc/img/feedback.png)
+
 ### How to Run
 ```md
 npm install
